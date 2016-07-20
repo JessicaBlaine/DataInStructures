@@ -1,11 +1,22 @@
 
-header {
+.site-header {
   font-family: "Lato", sans-serif;
+  position: relative;
+  color: white;
+  font-size: 1.6rem;
+  padding: 1rem 0;
+  background: #661141;
+}
+
+.site-header h1 {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .accordion {
   min-width: 800px;
-  margin: 4rem auto;
+  margin: 0 auto 4rem auto;
   width: 90%;
   font-family: "Lato", sans-serif;
   background: #f4f4f4;
@@ -27,6 +38,8 @@ header {
   cursor: pointer;
   transition: .2s ease;
 }
+
+.site-header:after,
 .accordion__copy:after,
 .accordion__title:after {
   content:'';
