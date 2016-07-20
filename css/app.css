@@ -1,0 +1,61 @@
+
+header {
+  font-family: "Lato", sans-serif;
+}
+
+.accordion {
+  min-width: 800px;
+  margin: 4rem auto;
+  width: 90%;
+  font-family: "Lato", sans-serif;
+  background: #f4f4f4;
+}
+
+.accordion__item {
+  min-height: 25px;
+  background: #882D60;
+}
+
+.accordion__title {
+  position: relative;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 1rem 1.5rem;
+  background: #882D60;
+  color: white;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.accordion__copy:after,
+.accordion__title:after {
+  content:'';
+  width:90%;
+  left: 5%;
+  margin: 0 auto;
+  height:2px;
+  background: #CD88AF;
+  position:absolute;
+  bottom: 0px;
+}
+.accordion__title:hover {
+  background: #661141;
+}
+.accordion__copy {
+  background: #f4f4f4;
+  display: none;
+  position: relative;
+  padding: 1rem 1.5rem 2rem 1.5rem;
+  color: gray;
+  line-height: 1.6;
+  font-size: 14px;
+  font-weight: 500;
+}
+.accordion__copy--open {
+  display: block;
+}
+
+
+body {
+  background: #222;
+}
