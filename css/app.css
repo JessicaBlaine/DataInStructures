@@ -6,16 +6,16 @@
   font-size: 1.6rem;
   padding: 1rem 0;
   background: #661141;
+  min-width: 1000px;
 }
 
 .site-header h1 {
-  width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
 .accordion {
-  min-width: 800px;
+  min-width: 1000px;
   margin: 0 auto 4rem auto;
   width: 90%;
   font-family: "Lato", sans-serif;
@@ -43,8 +43,8 @@
 .accordion__copy:after,
 .accordion__title:after {
   content:'';
-  width:90%;
-  left: 5%;
+  width:94%;
+  left: 3%;
   margin: 0 auto;
   height:2px;
   background: #CD88AF;
@@ -58,7 +58,7 @@
   background: #f4f4f4;
   display: none;
   position: relative;
-  padding: 1rem 1.5rem 2rem 1.5rem;
+  padding: 0 1.5rem 2rem 1.5rem;
   color: gray;
   line-height: 1.6;
   font-size: 14px;
@@ -66,9 +66,4 @@
 }
 .accordion__copy--open {
   display: block;
-}
-
-
-body {
-  background: #222;
 }

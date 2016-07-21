@@ -1,0 +1,40 @@
+
+.array {
+  margin: auto;
+  text-align: center;
+  /*border: 1px solid #CD88AF;*/
+  background: #D4EE9F;
+}
+
+.array ul {
+  display: inline-block;
+  margin-bottom: 100px;
+
+}
+
+.array__el {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  padding: 11px 0;
+  font-size: 1rem;
+  color: #354F00;
+  background: #A5C663;
+  border-left: 3px solid #7A9F35;
+  border-right: 3px solid #7A9F35;
+  border-radius: 4px;
+}
+
+.method {
+  display: inline-block;
+  background: #CD88AF;
+  border-radius: 10%;
+  overflow: hidden;
+}
+
+.method button {
+  border: 0;
+  font-size: 30px;
+  /*height: 30px;*/
+}

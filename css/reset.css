@@ -44,3 +44,6 @@ q:before, q:after {
 blockquote, q {
 	quotes: "" "";
 }
+*, *:before, *:after {
+  box-sizing: border-box;
+}
