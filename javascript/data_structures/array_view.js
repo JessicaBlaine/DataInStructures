@@ -1,5 +1,5 @@
 const anime = require("animejs");
-
+const Animations = require('./array_animations');
 
 function ArrayView($rootEl, array) {
   this.$rootEl = $rootEl;
@@ -11,11 +11,20 @@ function ArrayView($rootEl, array) {
   this.$content.append(this.$array);
 
   this.$content.slideToggle();
+  anime({
+    targets: `.array__el`,
+    translateY: "0.2rem",
+    color: "#354F00",
+    'border-color': "#7A9F35",
+    'background-color': "#A5C663",
+    easeing: "easeInBack",
+    elasticity: 500,
+  });
 }
 ArrayView.prototype.generateArray = function (array) {
   const $data = $("<ul/>").append(
     array.map((el, i) => {
-      return `<li class='array__el el-${i}'><div>${i}</div>${el}</li>`
+      return `<li class='array__el el-${i}'><div>${i}</div>${el}</li>`;
     })
   );
 
@@ -23,56 +32,31 @@ ArrayView.prototype.generateArray = function (array) {
   $data.append($pointer);
 
   const methods = [
-    $("<div><input placeholder='0' maxlength='2'/></div>")
+    $("<div><input placeholder='idx' maxlength='2'/></div>")
       .prepend( new MethodButton("Get", this.getIndex.bind(this)) ),
   ];
   methods.forEach(method => method.addClass("method input-method"));
   const $methods = $("<div/>").append(methods);
   $methods.addClass("array__methods");
 
-  return $("<div/>").append([$data, $methods]);
+  return $("<div/>").append(
+    [$data, $methods, "<span class='array__err'>Out of Bounds</span>"]
+  );
 };
 
 ArrayView.prototype.getIndex = function (event) {
+  // anime.remove(anime.list);
+  Animations.resetElements();
+  this.$array.remove(".array__err");
+
   const idx = parseInt( $(event.target).next().val() );
   if (!Number.isNaN(idx)) {
-    const revealVal = () => {
-      anime({
-        targets: [`.el-${idx}`, `.el-${idx} div`],
-        opacity: function(el, i) {
-          if (i === 1) return 0;
-        },
-        translateY: "-0.2rem",
-        color: "#661141",
-        'border-color': "#882D60",
-        'background-color': "#CD88AF",
-        easeing: "easeInBack",
-        elasticity: 500,
-      });
-      anime({
-        targets: '.js-pointer',
-        translateY: "-0.3rem",
-        direction: "reverse"
-      });
-
-    };
-    const movePointer = anime({
-      targets: ".js-pointer",
-      duration: 1500,
-      left: ["-1.5rem", `${1.5 + (idx * 4)}rem`],
-      autoplay: false,
-      complete: revealVal
-    });
-    anime({
-      targets: ".js-pointer",
-      duration: 500,
-      opacity: "1",
-      complete: movePointer.play
-    });
-
+    if (idx < 0 || idx >= this.array.length) {
+      Animations.outOfBounds(this.array.length);
+      this.$array.append();
+    }
+    else Animations.getIndex(idx);
   }
-
-  console.log(anime.getValue(".array__el", "left"));
 };
 
 function MethodButton(methodName, method) {

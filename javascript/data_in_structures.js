@@ -14,5 +14,5 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   });
 
-  new ArrayView($rootEl, ["one", "two", "three", "four"]);
+  new ArrayView($rootEl, ["this", "is", "an", "array"]);
 });

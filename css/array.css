@@ -4,6 +4,8 @@
   text-align: center;
   /*border: 1px solid #CD88AF;*/
   background: #D4EE9F;
+  height: auto;
+  transition: height 0.2s ease-in 0s;
 }
 
 .array ul {
@@ -77,8 +79,15 @@
 }
 
 .js-pointer {
-  opacity: 0.5;
+  opacity: 0.3;
   position: absolute;
   left: -2.5rem;
   bottom: -3rem;
+}
+
+.array__err {
+  /*display: none;*/
+  opacity: 0;
+  color: #DB6C40;
+  transition: opacity 0.2s ease-in 0s;
 }
