@@ -1,6 +1,7 @@
 window.$ = require('jquery');
 
 const ArrayView = require('./data_structures/array_view');
+window.anime = require('animejs');
 
 document.addEventListener("DOMContentLoaded", () => {
   const $rootEl = $("#root");
