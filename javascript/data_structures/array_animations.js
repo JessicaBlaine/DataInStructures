@@ -1,6 +1,13 @@
 const anime = require("animejs");
 
 module.exports = {
+  resetPointer() {
+    $('.method button').prop("disabled", false);
+    anime({
+      targets: ".js-pointer",
+      opacity: "0.3",
+    });
+  },
   resetElements() {
     $('.array__err').css("opacity", "0");
     anime({
@@ -17,17 +24,19 @@ module.exports = {
       elasticity: 500,
     });
   },
+  pop(callback) {
+
+  },
   getIndex(idx) {
     const returnPointer = anime({
       autoplay: false,
       targets: '.js-pointer',
-      left: [`${1.5 + (idx * 4)}rem`, "-2.5rem"],
+      left: [`${1.5 + (idx * 4)}rem`, "-1.5rem"],
       elasticity: 100,
-      complete: anime({
-        targets: ".js-pointer",
-        opacity: "0.3",
-        autoplay: false
-      }).play
+      complete: () => {
+        $('.method button').prop("disabled", false);
+        this.resetPointer();
+      }
     });
     const revealVal = () => {
       anime({
@@ -40,7 +49,6 @@ module.exports = {
         color: "#661141",
         'border-color': "#882D60",
         'background-color': "#CD88AF",
-        // easing: "easeOutBack",
         elasticity: 500,
       });
       anime({
@@ -54,7 +62,7 @@ module.exports = {
     const movePointer = anime({
       targets: ".js-pointer",
       duration: 1500,
-      left: ["-2.5rem", `${1.5 + (idx * 4)}rem`],
+      left: ["-1.5rem", `${1.5 + (idx * 4)}rem`],
       autoplay: false,
       elasticity: 200,
       complete: revealVal
@@ -67,12 +75,10 @@ module.exports = {
     });
   },
   outOfBounds(length) {
-    function rippleArr() {
-
-    }
     function bounceBack() {
       console.log("BB");
       $('.array__err').css("opacity", "1");
+      $('.method button').prop("disabled", false);
       anime({
         targets: '.array__err',
         translateY: ["-.6rem", "0rem"]
@@ -96,7 +102,7 @@ module.exports = {
         opacity: {
           value: '0.3'
         },
-        left: [`${1.5 + (length-1) * 4}rem`, "-2.5rem"]
+        left: [`${1.5 + (length-1) * 4}rem`, "-1.5rem"]
       });
     }
     const moveOOB = anime({
@@ -105,7 +111,7 @@ module.exports = {
       // direction: "alternate",
       // elasticity: 1000,
       easing: "easeInCubic",
-      left: ["-2.5rem", `${1.5 + (length-1) * 4}rem`],
+      left: ["-1.5rem", `${1.5 + (length-1) * 4}rem`],
       autoplay: false,
       complete: bounceBack
     });

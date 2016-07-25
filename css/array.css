@@ -5,7 +5,7 @@
   /*border: 1px solid #CD88AF;*/
   background: #D4EE9F;
   height: auto;
-  transition: height 0.2s ease-in 0s;
+  overflow: hidden;
 }
 
 .array ul {
@@ -15,6 +15,7 @@
 }
 
 .array__el {
+  overflow: hidden;
   position: relative;
   display: inline-block;
   width: 3rem;
@@ -27,7 +28,21 @@
   border-left: 3px solid #7A9F35;
   border-right: 3px solid #7A9F35;
   border-radius: 4px;
+  transition: width 0.3s ease 0s;
+  bottom: auto;
 }
+
+.el-hidden {
+  transition: width 0.3s ease 0s;
+  width: 0;
+}
+
+.el-popped {
+  transition: bottom 1s ease 0s;
+  position: absolute;
+  bottom: -5rem;
+}
+
 .array__el div {
   padding: 11px 0;
   position: absolute;
@@ -38,6 +53,7 @@
 }
 
 .method {
+  margin: 0 1rem;
   z-index: 0;
   display: inline-block;
   background: #A5C663;
@@ -64,12 +80,17 @@
   cursor: pointer;
   background: #7A9F35;
 }
+.method button:disabled {
+  cursor: default;
+  color: #7A9F35;
+  background: #A5C663;
+}
 
 .method input {
   z-index: 1;
   position: relative;
   border: 0;
-  width: 2.2rem;
+  width: 2.5rem;
   height: 1.8rem;
   margin-left: -.5rem;
   padding-left: 0.6rem;
@@ -78,10 +99,14 @@
   text-align: center;
 }
 
+.method input.text {
+  width: 3.5rem;
+}
+
 .js-pointer {
   opacity: 0.3;
   position: absolute;
-  left: -2.5rem;
+  left: -1.5rem;
   bottom: -3rem;
 }
 

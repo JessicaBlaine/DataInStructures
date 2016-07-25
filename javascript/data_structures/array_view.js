@@ -34,6 +34,16 @@ ArrayView.prototype.generateArray = function (array) {
   const methods = [
     $("<div><input placeholder='idx' maxlength='2'/></div>")
       .prepend( new MethodButton("Get", this.getIndex.bind(this)) ),
+
+    $("<div><input placeholder='idx' maxlength='2'/></div")
+      .append( new MethodButton("=", this.setIndex.bind(this)) )
+      .append("<input placeholder='value' maxlength='5' class='text'/>"),
+
+    $("<div><input placeholder='value' maxlength='5' class='text'/></div")
+      .prepend( new MethodButton("Push", this.push.bind(this)) ),
+
+    $("<div></div>").append( new MethodButton("Pop", this.pop.bind(this)) ),
+
   ];
   methods.forEach(method => method.addClass("method input-method"));
   const $methods = $("<div/>").append(methods);
@@ -44,13 +54,75 @@ ArrayView.prototype.generateArray = function (array) {
   );
 };
 
-ArrayView.prototype.getIndex = function (event) {
+ArrayView.prototype.pop = function (event) {
+  this.getIndex(event, this.array.length - 1);
+  // setTimeout(
+    // () => $(`.el-${this.array.length}`).addClass("el-popped"),
+    // 1100);
+
+  const removeEl = () => {
+    $(`.el-${this.array.length - 1}`).remove();
+    this.array.pop();
+    anime({
+      targets: [".array__el"],
+      // easing: "easeInOutCirc",
+      left: ["-2rem", "0rem"],
+      complete: () => {
+      }
+    });
+  };
+
+  anime({
+    targets: `.el-${this.array.length - 1}`,
+    delay: 2000,
+    translateY: "5rem",
+    easing: "easeOutQuad",
+    opacity: "0",
+    complete: removeEl
+  });
+
+
+};
+
+ArrayView.prototype.push = function (event) {
+  // $('.method button').prop("disabled", true);
+  if (this.array.length > 10) {
+    Animations.outOfBounds();
+  }
+  else {
+    const value = $(event.target).next().val();
+    if (value) {
+      const $element = $(`<li>${value}</li>`)
+        .addClass(`array__el el-hidden el-${this.array.length}`)
+        .prepend(`<div>${this.array.length}</div>`);
+      this.array.push(value);
+      this.$array.find("ul").append($element);
+      setTimeout(() => $element.removeClass("el-hidden"), 300);
+
+      this.getIndex(event, this.array.length - 1);
+    }
+  }
+};
+
+ArrayView.prototype.setIndex = function (event) {
+  // $('.method button').prop("disabled", true);
+  console.log("set");
+  const idx = parseInt( $(event.target).prev().val() );
+  const value = $(event.target).next().val();
+  if (idx < this.array.length) this.array[idx] = value;
+  console.log(idx, value, this.array);
+  this.$array.find(`.el-${idx}`).html(`<div>${idx}</div>${value}`);
+  this.getIndex(event, idx);
+};
+
+ArrayView.prototype.getIndex = function (event, i) {
   // anime.remove(anime.list);
   Animations.resetElements();
   this.$array.remove(".array__err");
 
-  const idx = parseInt( $(event.target).next().val() );
+  const idx = i || parseInt( $(event.target).next().val() );
   if (!Number.isNaN(idx)) {
+    $('.method button').prop("disabled", true);
     if (idx < 0 || idx >= this.array.length) {
       Animations.outOfBounds(this.array.length);
       this.$array.append();
