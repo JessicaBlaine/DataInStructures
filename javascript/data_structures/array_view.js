@@ -34,6 +34,8 @@ ArrayView.prototype.addInfoButtons = function () {
   $(".Set")
     .append( new MethodButton("=", this.setIndex.bind(this)) )
     .append("<input value='new' readonly='readonly' class='text'/>");
+  $(".Push").prepend( new MethodButton("Push", this.push.bind(this)) );
+  $(".Pop").append( new MethodButton("Pop", this.pop.bind(this)) );
 
   const changeInfo = function(event) {
     $('.array__info').removeClass("selected");
@@ -63,7 +65,7 @@ ArrayView.prototype.generateArray = function (array) {
       .append( new MethodButton("=", this.setIndex.bind(this)) )
       .append("<input placeholder='value' maxlength='5' class='text'/>"),
 
-    $("<div><input placeholder='value' maxlength='5' class='text'/></div")
+    $("<div><input placeholder='value' maxlength='5' class='text'/></div>")
       .prepend( new MethodButton("Push", this.push.bind(this)) ),
 
     $("<div></div>").append( new MethodButton("Pop", this.pop.bind(this)) ),

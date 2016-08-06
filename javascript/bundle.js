@@ -10180,6 +10180,8 @@
 	ArrayView.prototype.addInfoButtons = function () {
 	  $(".Get").prepend(new MethodButton("Get", this.getIndex.bind(this)));
 	  $(".Set").append(new MethodButton("=", this.setIndex.bind(this))).append("<input value='new' readonly='readonly' class='text'/>");
+	  $(".Push").prepend(new MethodButton("Push", this.push.bind(this)));
+	  $(".Pop").append(new MethodButton("Pop", this.pop.bind(this)));
 	
 	  var changeInfo = function changeInfo(event) {
 	    $('.array__info').removeClass("selected");
@@ -10199,7 +10201,7 @@
 	  var $pointer = $("<img class='js-pointer' src='./css/cursor.png'></img>");
 	  $data.append($pointer);
 	
-	  var methods = [$("<div><input placeholder='idx' maxlength='2'/></div>").prepend(new MethodButton("Get", this.getIndex.bind(this))), $("<div><input placeholder='idx' maxlength='2'/></div").append(new MethodButton("=", this.setIndex.bind(this))).append("<input placeholder='value' maxlength='5' class='text'/>"), $("<div><input placeholder='value' maxlength='5' class='text'/></div").prepend(new MethodButton("Push", this.push.bind(this))), $("<div></div>").append(new MethodButton("Pop", this.pop.bind(this)))];
+	  var methods = [$("<div><input placeholder='idx' maxlength='2'/></div>").prepend(new MethodButton("Get", this.getIndex.bind(this))), $("<div><input placeholder='idx' maxlength='2'/></div").append(new MethodButton("=", this.setIndex.bind(this))).append("<input placeholder='value' maxlength='5' class='text'/>"), $("<div><input placeholder='value' maxlength='5' class='text'/></div>").prepend(new MethodButton("Push", this.push.bind(this))), $("<div></div>").append(new MethodButton("Pop", this.pop.bind(this)))];
 	  methods.forEach(function (method) {
 	    return method.addClass("method input-method");
 	  });
