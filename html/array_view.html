@@ -2,11 +2,32 @@
 
 <p class="array__info 1 selected">An Array is a data structure that consists of a collection of elements (or values), each identified by an index. Arrays are typically stored using a pointer to their beginning (the 0 index), calculating the location of a following value by incrementing that pointer by the index's amount. Because a single addition always takes constant time to perform, Getting or Setting the value at a certain index is said to take O(1), or constant time. Try <span class="Get method"><input value="4" readonly="readonly"/></span>, <span class="Get method"><input value="1" readonly="readonly"/></span>, and <span class="Set method"><input value="1" readonly="readonly"/></span> to see for yourself -- They all take the same amount of time to execute, no matter how big the index you're accessing.
   <br>
-<span class="info-buttons"><button disabled="disabled" >Prev</button><button>Next</button></span>
+<span class="info-buttons">
+  <button disabled="disabled" >Prev</button>
+  <button class= "js-2">Next</button>
+</span>
 </p>
 
-<p class="array__info 2">That's all fine and good on a static array, but what if we want to add a new element, or remove an old one? It's easy to imagine a situation where 6 elements just isn't enough for your needs, or where some data needs to be removed. Push and Pop are standard array methods, and they each do exactly what it sounds like - {Push Dog} pushes the new value "Dog" onto the end of the array, and {Pop} removes the last element from the array. An array will contain an internal value that keeps track of its current length, which means we can look up and assign the index just past the rightmost element in O(1) time (constant). Popping removes the last element typically by simply decrementing the known length, and potentially setting that index to null, nil or some marker that a program understands as "not a value".</p>
+<p class="array__info 2">That's all fine and good on a static array, but what if we want to add a new element, or remove an old one? It's easy to imagine a situation where 6 elements just isn't enough for your needs, or where some data needs to be removed. Push and Pop are standard array methods, and they each do exactly what it sounds like - {Push Dog} pushes the new value "Dog" onto the end of the array, and {Pop} removes the last element from the array. An array will contain an internal value that keeps track of its current length, which means we can look up and assign the index just past the rightmost element in O(1) time (constant). Popping removes the last element typically by simply decrementing the known length, and potentially setting that index to null, nil or some marker that a program understands as "not a value".
+  <br>
+  <span class="info-buttons">
+    <button class="js-1" >Prev</button>
+    <button class="js-3">Next</button>
+  </span>
+</p>
 
-<p class="array__info 3">At a low level, arrays are initialized with a max-length value that describes how far past the 0 index the array can use. This makes sense -- computers only have a finite amount of memory, so it's very important to follow strict rules about where and how much of it is used by various programs, and so data isn't corrupted by specific addresses being overwritten by multiple programs at once. This begs the question, though, of what happens when you push to an array that's already maxed out. You can't just assign the value one to the right of the max index -- because this array has explicitly been told not to do that, and any other program or data might be using it already. The solution is to initialize a new static array, this one with a bigger max length. and because you need to move, one by one, every single value from the first array to a new location, this operation takes O(n) (or linear) time, where n is the length of the original array. Because while getting and setting are both O(1), they each need to be done n times.</p>
+<p class="array__info 3">At a low level, arrays are initialized with a max-length value that describes how far past the 0 index the array can use. This makes sense -- computers only have a finite amount of memory, so it's very important to follow strict rules about where and how much of it is used by various programs, and so data isn't corrupted by specific addresses being overwritten by multiple programs at once. This begs the question, though, of what happens when you push to an array that's already maxed out. You can't just assign the value one to the right of the max index -- because this array has explicitly been told not to do that, and any other program or data might be using it already. The solution is to initialize a new static array, this one with a bigger max length. and because you need to move, one by one, every single value from the first array to a new location, this operation takes O(n) (or linear) time, where n is the length of the original array. Because while getting and setting are both O(1), they each need to be done n times.
+  <br>
+  <span class="info-buttons">
+    <button class="js-2" >Prev</button>
+    <button class="js-4">Next</button>
+  </span>
+</p>
 
-<p class="array__info 4">What this means for Push, as it turns out, is that appending new data to an array can take O(n) time. In fact, if you increase the array max by only 1 each time, it inevitably takes O(n) time every time it's invoked - for sizable amounts of data, this could be a serious slowdown. The secret to guaranteeing your O(1) performance again is in the math of doubling. If you double the max size every time you resize the array, you will get n additional pushes in constant time. Because because you get n O(1) pushes for every O(n) push, the analysis for an amortized push operation is O(n/n), or O(1). Awesome!</p>
+<p class="array__info 4">What this means for Push, as it turns out, is that appending new data to an array can take O(n) time. In fact, if you increase the array max by only 1 each time, it inevitably takes O(n) time every time it's invoked - for sizable amounts of data, this could be a serious slowdown. The secret to guaranteeing your O(1) performance again is in the math of doubling. If you double the max size every time you resize the array, you will get n additional pushes in constant time. Because because you get n O(1) pushes for every O(n) push, the analysis for an amortized push operation is O(n/n), or O(1). Awesome!
+  <br>
+  <span class="info-buttons">
+    <button class="js-3" >Prev</button>
+    <button disabled="disabled">Next</button>
+  </span>
+</p>

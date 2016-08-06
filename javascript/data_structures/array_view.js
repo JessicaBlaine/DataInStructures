@@ -34,6 +34,15 @@ ArrayView.prototype.addInfoButtons = function () {
   $(".Set")
     .append( new MethodButton("=", this.setIndex.bind(this)) )
     .append("<input value='new' readonly='readonly' class='text'/>");
+
+  const changeInfo = function(event) {
+    $('.array__info').removeClass("selected");
+    $(`.array__info.${event.target.className.slice(-1)}`).addClass("selected");
+  };
+  $(".js-1").click(changeInfo);
+  $(".js-2").click(changeInfo);
+  $(".js-3").click(changeInfo);
+  $(".js-4").click(changeInfo);
 };
 
 ArrayView.prototype.generateArray = function (array) {
