@@ -10162,7 +10162,7 @@
 	  this.$container = $rootEl.find(".array-info");
 	  this.$content = this.$container.find(".content");
 	  this.$content.append(this.$array);
-	  this.$info = $("<div/>").load("../../html/array_view.html", this.addInfoButtons.bind(this));
+	  this.$info = $("<div/>").load("./html/array_view.html", this.addInfoButtons.bind(this));
 	  this.$content.append(this.$info);
 	
 	  this.$content.slideToggle();

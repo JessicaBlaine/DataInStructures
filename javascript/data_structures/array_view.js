@@ -10,7 +10,7 @@ function ArrayView($rootEl, array) {
   this.$content = this.$container.find(".content");
   this.$content.append(this.$array);
   this.$info = $("<div/>").load(
-                                "../../html/array_view.html",
+                                "./html/array_view.html",
                                 this.addInfoButtons.bind(this)
                               );
   this.$content.append(this.$info);
