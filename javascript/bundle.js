@@ -10162,6 +10162,8 @@
 	  this.$container = $rootEl.find(".array-info");
 	  this.$content = this.$container.find(".content");
 	  this.$content.append(this.$array);
+	  this.$info = $("<div/>").load("../../html/array_view.html", this.addInfoButtons.bind(this));
+	  this.$content.append(this.$info);
 	
 	  this.$content.slideToggle();
 	  anime({
@@ -10174,6 +10176,12 @@
 	    elasticity: 500
 	  });
 	}
+	
+	ArrayView.prototype.addInfoButtons = function () {
+	  $(".Get").prepend(new MethodButton("Get", this.getIndex.bind(this)));
+	  $(".Set").append(new MethodButton("=", this.setIndex.bind(this))).append("<input value='new' readonly='readonly' class='text'/>");
+	};
+	
 	ArrayView.prototype.generateArray = function (array) {
 	  var $data = $("<ul/>").append(array.map(function (el, i) {
 	    return "<li class='array__el el-" + i + "'><div>" + i + "</div>" + el + "</li>";
@@ -10186,7 +10194,7 @@
 	  methods.forEach(function (method) {
 	    return method.addClass("method input-method");
 	  });
-	  var $methods = $("<div/>").append(methods);
+	  var $methods = $("<div><h2>Array Methods</h2></div>").append(methods);
 	  $methods.addClass("array__methods");
 	
 	  return $("<div/>").append([$data, $methods, "<span class='array__err'>Out of Bounds</span>"]);
