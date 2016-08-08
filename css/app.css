@@ -67,3 +67,25 @@
 .accordion__copy--open {
   display: block;
 }
+
+footer {
+  color: white;
+  padding: 0.6rem;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid white;
+  transition: 0.2s ease-out;
+}
+footer a:hover {
+  text-decoration: underline;
+  color: #A5C663;
+}
+
+/*footer a:before {
+  content: "|  "
+}*/
