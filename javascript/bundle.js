@@ -49,7 +49,8 @@
 	window.$ = __webpack_require__(1);
 	
 	var ArrayView = __webpack_require__(2);
-	window.anime = __webpack_require__(3);
+	var HashView = __webpack_require__(5);
+	// window.anime = require('animejs');
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  var $rootEl = $("#root");
@@ -63,6 +64,7 @@
 	  });
 	
 	  new ArrayView($rootEl, ["this", "is", "an", "array", "of", "words"]);
+	  new HashView($rootEl, { key1: "val1", key2: "val2", key3: "val3" });
 	});
 
 /***/ },
@@ -11071,6 +11073,61 @@
 	    });
 	  }
 	};
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var anime = __webpack_require__(3);
+	var Animations = __webpack_require__(6);
+	
+	function HashView($rootEl, hash) {
+	  this.$rootEl = $rootEl;
+	  this.hash = hash || {};
+	  this.$hash = this.generateHash(hash);
+	  this.$container = $rootEl.find(".hash-info");
+	  this.$content = this.$container.find(".content");
+	  this.$content.append(this.$hash);
+	}
+	
+	HashView.prototype.generateHash = function (hash) {
+	  var $buckets = $("<ul class='hash__buckets'/>").append([0, 1, 2, 3, 4, 5, 6, 7].map(function (idx) {
+	    return "<li class='" + idx + "''><span>" + idx + " </span></li>";
+	  }));
+	  var $keys = $("<ul class='hash__keys'/>").append(Object.keys(hash).map(function (k) {
+	    var idx = hashCode(k) % 8;
+	    $buckets.find("." + idx).append(hash[k]);
+	    return "<li class=\"hash__key\">" + k + "</li>";
+	  }));
+	  var $hashFunction = $("<div class='hash__function'/>");
+	
+	  return $("<div/>").append([$keys, $hashFunction, $buckets]);
+	};
+	
+	var hashCode = function hashCode(str) {
+	  var hash = 0;
+	  if (str.length === 0) return hash;
+	  for (var i = 0; i < str.length; i++) {
+	    var char = str.charCodeAt(i);
+	    hash = (hash << 5) - hash + char;
+	    hash = hash & hash; // Convert to 32bit integer
+	  }
+	  return hash;
+	};
+	
+	module.exports = HashView;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var anime = __webpack_require__(3);
+	
+	module.exports = {};
 
 /***/ }
 /******/ ]);
