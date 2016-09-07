@@ -64,7 +64,7 @@
 	  });
 	
 	  new ArrayView($rootEl, ["this", "is", "an", "array", "of", "words"]);
-	  new HashView($rootEl, { key1: "val1", key2: "val2", key3: "val3" });
+	  new HashView($rootEl, { HashKey: "val1", ExampleKey: "val2", ThirdKey: "val3" });
 	});
 
 /***/ },
@@ -10167,7 +10167,7 @@
 	  this.$info = $("<div/>").load("./html/array_view.html", this.addInfoButtons.bind(this));
 	  this.$content.append(this.$info);
 	
-	  this.$content.slideToggle();
+	  // this.$content.slideToggle();
 	  anime({
 	    targets: ".array__el",
 	    translateY: "0.2rem",
@@ -11090,20 +11090,22 @@
 	  this.$container = $rootEl.find(".hash-info");
 	  this.$content = this.$container.find(".content");
 	  this.$content.append(this.$hash);
+	
+	  this.$content.slideToggle();
 	}
 	
 	HashView.prototype.generateHash = function (hash) {
 	  var $buckets = $("<ul class='hash__buckets'/>").append([0, 1, 2, 3, 4, 5, 6, 7].map(function (idx) {
-	    return "<li class='" + idx + "''><span>" + idx + " </span></li>";
+	    return "<li class='" + idx + "''><span>" + idx + "</span></li>";
 	  }));
 	  var $keys = $("<ul class='hash__keys'/>").append(Object.keys(hash).map(function (k) {
-	    var idx = hashCode(k) % 8;
-	    $buckets.find("." + idx).append(hash[k]);
+	    var idx = Math.abs(hashCode(k) % 8);
+	    $buckets.find("." + idx).append(hash[k]).addClass("hasData");
 	    return "<li class=\"hash__key\">" + k + "</li>";
 	  }));
 	  var $hashFunction = $("<div class='hash__function'/>");
 	
-	  return $("<div/>").append([$keys, $hashFunction, $buckets]);
+	  return $("<div class='hash'/>").append([$keys, $hashFunction, $buckets]);
 	};
 	
 	var hashCode = function hashCode(str) {

@@ -1,0 +1,57 @@
+
+.hash {
+  height: 15rem;
+  text-align: center;
+  background-color: #D4EE9F;
+  padding: 0.5rem;
+}
+.hash ul {
+  display: inline-block;
+  vertical-align: top;
+  width: 8rem;
+  height: 100%;
+  margin: 0 2rem;
+}
+.hash__keys {
+
+}
+.hash__keys li {
+  background-color: #7A9F35;
+  color: white;
+  font-size: 1rem;
+  margin: 0.5rem;
+  border-radius: 2px;
+}
+
+.hash__function {
+  display: inline-block;
+  width: 5rem;
+  height: 100%;
+  background-color: #A5C663;
+}
+
+.hash__buckets {
+  background-color: #D4EE9F;
+  border-top: 1px solid #7A9F35;
+}
+.hash__buckets li {
+  border-bottom: 1px solid #7A9F35;
+  border-left: 1px solid #7A9F35;
+  border-right: 1px solid #7A9F35;
+  background-color: lightgrey;
+  height: 12.5%;
+  text-align: left;
+  padding-left: 4px;
+  font-size: 1rem;
+}
+.hash__buckets span {
+  color: grey;
+  padding: 0 5px;
+  background: white;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+.hash__buckets li.hasData {
+  background-color: #567714;
+  color: white;
+}

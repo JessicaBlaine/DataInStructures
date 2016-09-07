@@ -16,5 +16,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   new ArrayView($rootEl, ["this", "is", "an", "array", "of", "words"]);
-  new HashView($rootEl, {key1: "val1", key2: "val2", key3: "val3"});
+  new HashView($rootEl, {HashKey: "val1", ExampleKey: "val2", ThirdKey: "val3"});
 });

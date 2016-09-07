@@ -8,24 +8,26 @@ function HashView($rootEl, hash) {
   this.$container = $rootEl.find(".hash-info");
   this.$content = this.$container.find(".content");
   this.$content.append(this.$hash);
+
+  this.$content.slideToggle();
 }
 
 HashView.prototype.generateHash = function (hash) {
   const $buckets = $("<ul class='hash__buckets'/>").append(
     [0, 1, 2, 3, 4, 5, 6, 7].map(idx => {
-      return `<li class='${idx}''><span>${idx} </span></li>`;
+      return `<li class='${idx}''><span>${idx}</span></li>`;
     })
   );
   const $keys = $("<ul class='hash__keys'/>").append(
     Object.keys(hash).map(k => {
-      let idx = hashCode(k) % 8;
-      $buckets.find(`.${idx}`).append(hash[k]);
+      let idx = Math.abs(hashCode(k) % 8);
+      $buckets.find(`.${idx}`).append(hash[k]).addClass("hasData");
       return `<li class="hash__key">${k}</li>`;
     })
   );
   const $hashFunction = $("<div class='hash__function'/>");
 
-  return $("<div/>").append(
+  return $("<div class='hash'/>").append(
     [$keys, $hashFunction, $buckets]
   );
 };

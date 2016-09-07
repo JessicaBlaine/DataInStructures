@@ -17,7 +17,7 @@ function ArrayView($rootEl, array) {
 
 
 
-  this.$content.slideToggle();
+  // this.$content.slideToggle();
   anime({
     targets: `.array__el`,
     translateY: "0.2rem",
